@@ -22,6 +22,6 @@ public class Statement {
     }
 
     public void registerWithdraw(Integer amount) {
-
+        balance -= amount;
     }
 }

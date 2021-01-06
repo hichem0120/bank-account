@@ -48,4 +48,11 @@ public class AccountTest {
         account.withdraw(200);
         verify(statement).registerWithdraw(200);
     }
+
+    @Test
+    public void should_subtract_amount_from_balance_when_withdraw() {
+        account = new Account(100);
+        account.withdraw(60);
+        Assert.assertEquals(40, account.getBalance());
+    }
 }
