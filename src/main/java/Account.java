@@ -6,7 +6,8 @@ public class Account {
     }
 
     public Account(Integer amount) {
-        statement = new Statement(amount);
+        statement = new Statement();
+        statement.registerDeposit(amount);
     }
 
     public void deposit(Integer amount) {

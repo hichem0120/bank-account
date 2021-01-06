@@ -35,4 +35,10 @@ public class AccountTest {
         account.deposit(40);
         Assert.assertEquals(100, account.getBalance());
     }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void should_not_accept_deposit_with_negative_amounts() {
+        account = new Account(0);
+        account.deposit(-70);
+    }
 }
