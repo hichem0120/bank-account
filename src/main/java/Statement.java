@@ -22,6 +22,9 @@ public class Statement {
     }
 
     public void registerWithdraw(Integer amount) {
+        if (amount < 0) {
+            throw new UnsupportedOperationException();
+        }
         balance -= amount;
     }
 }

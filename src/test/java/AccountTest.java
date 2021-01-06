@@ -55,4 +55,10 @@ public class AccountTest {
         account.withdraw(60);
         Assert.assertEquals(40, account.getBalance());
     }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void should_not_accept_withdraw_with_negative_amounts() {
+        account = new Account(100);
+        account.withdraw(-70);
+    }
 }
