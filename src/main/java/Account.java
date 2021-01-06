@@ -17,4 +17,8 @@ public class Account {
     public int getBalance() {
         return statement.getBalance();
     }
+
+    public void withdraw(Integer amount) {
+        statement.registerWithdraw(amount);
+    }
 }

@@ -41,4 +41,11 @@ public class AccountTest {
         account = new Account(0);
         account.deposit(-70);
     }
+
+    @Test
+    public void should_store_withdraw_statement() {
+        account = new Account(statement);
+        account.withdraw(200);
+        verify(statement).registerWithdraw(200);
+    }
 }

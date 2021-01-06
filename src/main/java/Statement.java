@@ -20,4 +20,8 @@ public class Statement {
     public int getBalance() {
         return balance;
     }
+
+    public void registerWithdraw(Integer amount) {
+
+    }
 }
