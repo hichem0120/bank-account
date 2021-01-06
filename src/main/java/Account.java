@@ -9,4 +9,7 @@ public class Account {
         statement.registerDeposit(amount);
     }
 
+    public int getBalance() {
+        return 25;
+    }
 }
