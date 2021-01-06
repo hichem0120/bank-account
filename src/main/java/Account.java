@@ -5,11 +5,15 @@ public class Account {
         this.statement = statement;
     }
 
+    public Account(Integer amount) {
+        statement = new Statement(amount);
+    }
+
     public void deposit(Integer amount) {
         statement.registerDeposit(amount);
     }
 
     public int getBalance() {
-        return 25;
+        return statement.getBalance();
     }
 }
