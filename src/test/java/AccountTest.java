@@ -61,4 +61,13 @@ public class AccountTest {
         account = new Account(100);
         account.withdraw(-70);
     }
+
+    @Test
+    public void should_print_all_statements() {
+        account = new Account(statement);
+        account.deposit(10);
+        account.withdraw(60);
+        account.printStatement();
+        verify(statement).print();
+    }
 }

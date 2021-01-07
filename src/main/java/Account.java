@@ -21,4 +21,8 @@ public class Account {
     public void withdraw(Integer amount) {
         statement.registerWithdraw(amount);
     }
+
+    public void printStatement() {
+        statement.print();
+    }
 }

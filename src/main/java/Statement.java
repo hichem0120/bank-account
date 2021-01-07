@@ -27,4 +27,8 @@ public class Statement {
         }
         balance -= amount;
     }
+
+    public void print() {
+        throw new UnsupportedOperationException();
+    }
 }
