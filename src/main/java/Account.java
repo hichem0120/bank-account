@@ -10,19 +10,24 @@ public class Account {
         statement.registerDeposit(amount);
     }
 
+    public Account(Statement statement, Integer amount) {
+        this.statement = statement;
+        this.statement.registerDeposit(amount);
+    }
+
     public void deposit(Integer amount) {
         statement.registerDeposit(amount);
     }
 
     public int getBalance() {
-        return statement.getBalance();
+        return statement.getCurrentBalance();
     }
 
     public void withdraw(Integer amount) {
         statement.registerWithdraw(amount);
     }
 
-    public void printStatement() {
-        statement.print();
+    public void printStatement(Printer printer) {
+        statement.print(printer);
     }
 }

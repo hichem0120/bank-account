@@ -15,6 +15,9 @@ public class AccountTest {
     @Mock
     private Statement statement;
 
+    @Mock
+    private Printer printer;
+
     @Test
     public void should_store_deposit_statement() {
         account = new Account(statement);
@@ -67,7 +70,8 @@ public class AccountTest {
         account = new Account(statement);
         account.deposit(10);
         account.withdraw(60);
-        account.printStatement();
-        verify(statement).print();
+        account.printStatement(printer);
+        verify(statement).print(printer);
     }
+
 }

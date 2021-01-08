@@ -1,34 +1,46 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Statement {
 
-    private Integer balance = 0;
+    private Clock clock;
+    private List<Transaction> transactions = new ArrayList<>();
 
-    public Statement(Integer amount) {
-        this.balance = amount;
+
+    public Statement(Clock clock) {
+        this.clock = clock;
     }
 
     public Statement() {
-
+        transactions = new ArrayList<>();
+        clock = new Clock();
     }
 
     public void registerDeposit(Integer amount) {
         if (amount < 0) {
             throw new UnsupportedOperationException();
         }
-        balance += amount;
+        transactions.add(new Transaction(amount, OperationType.DEPOSIT, clock.getTodayDate(), getCurrentBalance()));
+
     }
 
-    public int getBalance() {
-        return balance;
-    }
 
     public void registerWithdraw(Integer amount) {
         if (amount < 0) {
             throw new UnsupportedOperationException();
         }
-        balance -= amount;
+        transactions.add(new Transaction(amount, OperationType.WITHDRAW, clock.getTodayDate(), getCurrentBalance()));
     }
 
-    public void print() {
-        throw new UnsupportedOperationException();
+    public void print(Printer printer) {
+        if (transactions.isEmpty()) {
+            printer.print("No Transactions");
+        } else {
+            transactions.forEach(transaction -> printer.print(transaction.toPrint()));
+        }
+    }
+
+    public Integer getCurrentBalance() {
+        return transactions.stream().mapToInt(Transaction::addOrSubtractAmount).sum();
     }
 }
