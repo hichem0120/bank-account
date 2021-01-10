@@ -28,7 +28,7 @@ public class AccountTest {
     @Test
     public void balance_must_be_equal_to_deposit_amount_when_first_deposit() {
         account = new Account(25);
-        assertEquals(25, account.getBalance());
+        assertEquals(new Integer(25), account.getBalance());
     }
 
     @Test
@@ -36,13 +36,20 @@ public class AccountTest {
         account = new Account(0);
         account.deposit(60);
         account.deposit(40);
-        Assert.assertEquals(100, account.getBalance());
+        Assert.assertEquals(new Integer(100), account.getBalance());
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void should_not_accept_deposit_with_negative_amounts() {
         account = new Account(0);
         account.deposit(-70);
+    }
+
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void should_not_accept_withdraw_when_balance_less_than_minimum_threshold_limit() {
+        account = new Account(50);
+        account.withdraw(200);
     }
 
     @Test
@@ -56,7 +63,7 @@ public class AccountTest {
     public void should_subtract_amount_from_balance_when_withdraw() {
         account = new Account(100);
         account.withdraw(60);
-        Assert.assertEquals(40, account.getBalance());
+        Assert.assertEquals(new Integer(40), account.getBalance());
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -70,8 +77,16 @@ public class AccountTest {
         account = new Account(statement);
         account.deposit(10);
         account.withdraw(60);
-        account.printStatement(printer);
-        verify(statement).print(printer);
+        account.printTransactions(printer);
+        verify(statement).printTransactions(printer);
+    }
+
+    @Test
+    public void should_print_current_balance() {
+        account = new Account(statement);
+        account.deposit(10);
+        account.printCurrentBalance(printer);
+        verify(statement).printCurrentBalance(printer);
     }
 
 }

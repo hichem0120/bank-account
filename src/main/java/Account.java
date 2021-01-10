@@ -19,7 +19,7 @@ public class Account {
         statement.registerDeposit(amount);
     }
 
-    public int getBalance() {
+    public Integer getBalance() {
         return statement.getCurrentBalance();
     }
 
@@ -27,7 +27,12 @@ public class Account {
         statement.registerWithdraw(amount);
     }
 
-    public void printStatement(Printer printer) {
-        statement.print(printer);
+    public void printTransactions(Printer printer) {
+        statement.printTransactions(printer);
     }
+
+    public void printCurrentBalance(Printer printer) {
+        statement.printCurrentBalance(printer);
+    }
+
 }
